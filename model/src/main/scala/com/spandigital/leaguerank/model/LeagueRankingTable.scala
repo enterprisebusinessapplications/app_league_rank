@@ -1,3 +1,7 @@
 package com.spandigital.leaguerank.model
 
-case class LeagueRankingTable(teamName: String, points: Int)
+trait LeagueRankingTable {
+    type LeagueRankingTable = Map[String, Int]
+
+    override def toString: String = ??? //print as per requirements
+}

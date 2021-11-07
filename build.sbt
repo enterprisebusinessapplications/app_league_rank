@@ -1,3 +1,5 @@
+import sbtassembly.AssemblyPlugin.defaultShellScript
+
 lazy val Model: Project = Project("model", file("model"))
   .settings(Settings.BaseProject: _*)
   .disablePlugins(sbtassembly.AssemblyPlugin)
@@ -37,11 +39,10 @@ lazy val Main: Project = Project("main", file("main"))
   .enablePlugins(sbtassembly.AssemblyPlugin)
   .settings(
     name := "main",
-    assemblyJarName in assembly := "service.jar",
-    assemblyOutputPath in assembly := file("dist/service.jar"),
-    //Do not include Scala library classes as they are are included in the Scala runtime
-    assemblyOption in assembly := (assemblyOption in assembly).value
-      .copy(includeScala = false),
+    assemblyJarName in assembly := "league_rank.jar",
+    assemblyOutputPath in assembly := file("dist/league_rank.jar"),
+    assemblyOption in assembly := (assemblyOption in assembly).value.copy(
+    prependShellScript = Some(defaultShellScript)),
     libraryDependencies ++= Seq(
       Dependencies.scalaTestFunSuite % Test
     )

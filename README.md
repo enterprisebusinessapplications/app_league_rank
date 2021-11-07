@@ -10,6 +10,21 @@
         * the command line interface into the application lives in this module
     * if one were to need to expose this service over REST, gRPC, as library etc, they simply add a module here that provides the interface they want expose.
 
+# file interface
+* definitions:
+    * TeamResult = AlphabetName Score
+        * AlphabetName can incldue spaces
+    * Delimeter = ", " => comma and one space
+* The content of match result line is:
+    * pattern: TeamResultDelimeter TeamResult
+    * Example:
+        * Tarantulas 1, FC Awesome 0
+            * TeamResult_A = Tarantulas 1
+            * Delimeter = ", "
+            * TeamResult_B = FC Awesome 0
+
+
+
 # usage
 ```bash
    #from root directory

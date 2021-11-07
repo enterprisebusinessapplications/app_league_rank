@@ -1,16 +1,19 @@
-1. create CLI application
+1. create CLI application: done rv1
 
-2. accept filenames and load file
+2. accept filenames: done rv1
    error handling
 
-3. parse file into List[MatchResult]
+3. load file
+   error handling
+
+4. parse file into List[MatchResult]
    implement MatchResultsFileReader
    assumption(as prescribed):
     file input valid, no error handling
 
-4. implement league ranking calculation
+5. implement league ranking calculation
    LeagueRankingCaculator
    pure function: no error handling
 
-5. implement string representation of calculation
+6. implement string representation of calculation
    pure function: no error handling

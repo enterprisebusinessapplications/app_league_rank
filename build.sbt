@@ -40,7 +40,7 @@ lazy val Main: Project = Project("main", file("main"))
   .settings(
     name := "main",
     assemblyJarName in assembly := "league_rank.jar",
-    assemblyOutputPath in assembly := file("dist/league_rank.jar"),
+    assemblyOutputPath in assembly := file("release/league_rank.jar"),
     assemblyOption in assembly := (assemblyOption in assembly).value.copy(
     prependShellScript = Some(defaultShellScript)),
     libraryDependencies ++= Seq(

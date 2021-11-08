@@ -13,7 +13,7 @@ object Main extends App {
       println("Commencing league rank calculation...")
       val matchResults = MatchResultsFileReader.read(matchResultsFileName)
       val leagueTable = LeagueRankingCaculator.calculate(matchResults)
-      print(leagueTable)
+      println(leagueTable)
       println("Done")
     }
   } catch {
@@ -21,6 +21,7 @@ object Main extends App {
       println(
         "failed during the execution of ranking teams. Please refer to stack trace below"
       )
+
       e.printStackTrace()
   }
 }

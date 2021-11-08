@@ -3,17 +3,29 @@
 2. accept filenames: done rv1
    error handling
 
-3. load file
-   error handling
+3. load file *
+   error handling *
 
-4. parse file into List[MatchResult]
-   implement MatchResultsFileReader
-   assumption(as prescribed):
-    file input valid, no error handling
+4. parse file into List[MatchResult] *
+   implement MatchResultsFileReader *
+   assumption(as prescribed): *
+    file input valid, no error handling *
 
 5. implement league ranking calculation
    LeagueRankingCaculator
    pure function: no error handling
 
-6. implement string representation of calculation
+6. implement string representation of calculation *
    pure function: no error handling
+
+7. wire everything up *
+   light manual
+
+8. through automated(unit and integration testing)
+
+9. through manual testing
+
+10. documentation
+   installation
+   usage
+   

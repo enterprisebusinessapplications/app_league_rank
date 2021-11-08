@@ -4,3 +4,4 @@ target/
 .metals/
 .vscode/
 .dccache
+.DS_Store

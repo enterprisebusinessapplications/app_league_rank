@@ -3,7 +3,7 @@ package com.spandigital.leaguerank.gateway
 import org.scalatest.funsuite.AnyFunSuite
 import com.spandigital.leaguerank.model.{
   MatchResultDefaultObject,
-  TeamResultDefaultObject
+  TeamScoreDefaultObject
 }
 
 class MatchResultsParserUnitTests extends AnyFunSuite {
@@ -16,8 +16,8 @@ class MatchResultsParserUnitTests extends AnyFunSuite {
     val snakes = "Snakes"
     val expectedMatchResults = List(
       MatchResultDefaultObject.copy(
-        teamA = TeamResultDefaultObject.copy(lions, 3),
-        teamB = TeamResultDefaultObject.copy(snakes, 3)
+        teamA = TeamScoreDefaultObject.copy(lions, 3),
+        teamB = TeamScoreDefaultObject.copy(snakes, 3)
       )
     )
 
@@ -36,12 +36,12 @@ class MatchResultsParserUnitTests extends AnyFunSuite {
 
     val expectedMatchResults = List(
       MatchResultDefaultObject.copy(
-        teamA = TeamResultDefaultObject.copy(lions, 3),
-        teamB = TeamResultDefaultObject.copy(snakes, 3)
+        teamA = TeamScoreDefaultObject.copy(lions, 3),
+        teamB = TeamScoreDefaultObject.copy(snakes, 3)
       ),
       MatchResultDefaultObject.copy(
-        teamA = TeamResultDefaultObject.copy(tarantulas, 1),
-        teamB = TeamResultDefaultObject.copy(fcAwesome, 0)
+        teamA = TeamScoreDefaultObject.copy(tarantulas, 1),
+        teamB = TeamScoreDefaultObject.copy(fcAwesome, 0)
       )
     )
 

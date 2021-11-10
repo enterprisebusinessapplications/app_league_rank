@@ -5,7 +5,7 @@ import com.spandigital.leaguerank.model._
 class League() {
   private val pointsTable: MutableMap[String, Int] = MutableMap.empty
 
-  private def allocatePoints(teamA: TeamResult, teamB: TeamResult) = {
+  private def allocatePoints(teamA: TeamScore, teamB: TeamScore) = {
     def setPoints(teamName: String, points: Int): Unit =
       if (pointsTable.contains(teamName))
         pointsTable(teamName) = pointsTable(teamName) + points

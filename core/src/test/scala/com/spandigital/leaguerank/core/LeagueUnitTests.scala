@@ -1,4 +1,4 @@
-package com.spandigital.app_league_rank.model
+package com.spandigital.leaguerank.core
 
 import org.scalatest.funsuite.AnyFunSuite
 import com.spandigital.leaguerank.model._
@@ -6,7 +6,7 @@ import com.spandigital.leaguerank.core.League
 import scala.collection.mutable.LinkedHashMap
 import com.spandigital.leaguerank.model.{
   MatchResultDefaultObject,
-  TeamResultDefaultObject
+  TeamScoreDefaultObject
 }
 
 class LeagueUnitTests extends AnyFunSuite {
@@ -23,8 +23,8 @@ class LeagueUnitTests extends AnyFunSuite {
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(rabbits, 1),
-          teamB = TeamResultDefaultObject.copy(dogs, 0)
+          teamA = TeamScoreDefaultObject.copy(rabbits, 1),
+          teamB = TeamScoreDefaultObject.copy(dogs, 0)
         )
       )
     )
@@ -42,8 +42,8 @@ class LeagueUnitTests extends AnyFunSuite {
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(rabbits, 1),
-          teamB = TeamResultDefaultObject.copy(dogs, 0)
+          teamA = TeamScoreDefaultObject.copy(rabbits, 1),
+          teamB = TeamScoreDefaultObject.copy(dogs, 0)
         )
       )
     )
@@ -55,8 +55,8 @@ class LeagueUnitTests extends AnyFunSuite {
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(rabbits, 0),
-          teamB = TeamResultDefaultObject.copy(dogs, 5)
+          teamA = TeamScoreDefaultObject.copy(rabbits, 0),
+          teamB = TeamScoreDefaultObject.copy(dogs, 5)
         )
       )
     )
@@ -78,8 +78,8 @@ class LeagueUnitTests extends AnyFunSuite {
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(rabbits, 0),
-          teamB = TeamResultDefaultObject.copy(penguins, 5)
+          teamA = TeamScoreDefaultObject.copy(rabbits, 0),
+          teamB = TeamScoreDefaultObject.copy(penguins, 5)
         )
       )
     )
@@ -100,24 +100,24 @@ class LeagueUnitTests extends AnyFunSuite {
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(lions, 3),
-          teamB = TeamResultDefaultObject.copy(snakes, 3)
+          teamA = TeamScoreDefaultObject.copy(lions, 3),
+          teamB = TeamScoreDefaultObject.copy(snakes, 3)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(tarantulas, 1),
-          teamB = TeamResultDefaultObject.copy(fcAwesome, 0)
+          teamA = TeamScoreDefaultObject.copy(tarantulas, 1),
+          teamB = TeamScoreDefaultObject.copy(fcAwesome, 0)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(lions, 1),
-          teamB = TeamResultDefaultObject.copy(fcAwesome, 1)
+          teamA = TeamScoreDefaultObject.copy(lions, 1),
+          teamB = TeamScoreDefaultObject.copy(fcAwesome, 1)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(tarantulas, 3),
-          teamB = TeamResultDefaultObject.copy(snakes, 1)
+          teamA = TeamScoreDefaultObject.copy(tarantulas, 3),
+          teamB = TeamScoreDefaultObject.copy(snakes, 1)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(lions, 4),
-          teamB = TeamResultDefaultObject.copy(grouches, 0)
+          teamA = TeamScoreDefaultObject.copy(lions, 4),
+          teamB = TeamScoreDefaultObject.copy(grouches, 0)
         )
       )
     )
@@ -147,24 +147,24 @@ class LeagueUnitTests extends AnyFunSuite {
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(lions, 3),
-          teamB = TeamResultDefaultObject.copy(snakes, 3)
+          teamA = TeamScoreDefaultObject.copy(lions, 3),
+          teamB = TeamScoreDefaultObject.copy(snakes, 3)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(tarantulas, 1),
-          teamB = TeamResultDefaultObject.copy(fcAwesome, 0)
+          teamA = TeamScoreDefaultObject.copy(tarantulas, 1),
+          teamB = TeamScoreDefaultObject.copy(fcAwesome, 0)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(lions, 1),
-          teamB = TeamResultDefaultObject.copy(fcAwesome, 1)
+          teamA = TeamScoreDefaultObject.copy(lions, 1),
+          teamB = TeamScoreDefaultObject.copy(fcAwesome, 1)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(tarantulas, 3),
-          teamB = TeamResultDefaultObject.copy(snakes, 1)
+          teamA = TeamScoreDefaultObject.copy(tarantulas, 3),
+          teamB = TeamScoreDefaultObject.copy(snakes, 1)
         ),
         MatchResultDefaultObject.copy(
-          teamA = TeamResultDefaultObject.copy(lions, 4),
-          teamB = TeamResultDefaultObject.copy(grouches, 0)
+          teamA = TeamScoreDefaultObject.copy(lions, 4),
+          teamB = TeamScoreDefaultObject.copy(grouches, 0)
         )
       )
     )

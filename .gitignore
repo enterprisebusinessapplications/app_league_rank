@@ -6,4 +6,5 @@ target/
 .dccache
 .DS_Store
 .project/.bloop/
-.project/project/
+project/project/
+.project/project/.bloop/

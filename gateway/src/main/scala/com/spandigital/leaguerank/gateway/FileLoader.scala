@@ -13,7 +13,7 @@ object FileLoader {
       case Success(result) => result
       case Failure(e) =>
         println(
-          s"An errot occured loading file $filename. exception: ${e.getMessage}"
+          s"An error occured loading file $filename."
         )
         throw e
     }

@@ -19,7 +19,7 @@ object Main extends App {
   } catch {
     case e: Exception =>
       println(
-        "failed during the execution of ranking teams. Please refer to stack trace below"
+        "Failed to generate the League rankings. Please refer to stack trace below for reason:"
       )
       e.printStackTrace()
   }

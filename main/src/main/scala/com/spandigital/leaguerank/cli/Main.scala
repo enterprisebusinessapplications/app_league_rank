@@ -11,10 +11,9 @@ object Main extends App {
     else {
       val matchResultsFileName = args(0)
       val matches = MatchesFileParser.loadFile(matchResultsFileName)
-      val leagueService = LeagueService(League())
-      leagueService.calculateRankings(matches)
-      leagueService.printLeagueRankings()
-      println()
+      val league = League()
+      val rankings = league.allocateRankings(matches)
+      println(league)
     }
   } catch {
     case e: Exception =>

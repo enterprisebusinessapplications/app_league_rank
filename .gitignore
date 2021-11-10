@@ -5,3 +5,5 @@ target/
 .vscode/
 .dccache
 .DS_Store
+.project/.bloop/
+.project/project/

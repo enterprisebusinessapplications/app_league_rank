@@ -6,7 +6,8 @@ lazy val Model: Project = Project("model", file("model"))
   .settings(
     name := "model",
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test
+      Dependencies.scalaTestFunSuite % Test,
+      Dependencies.mockito
     )
   )
 
@@ -17,18 +18,20 @@ lazy val Gateway: Project = Project("gateway", file("gateway"))
   .settings(
     name := "gateway",
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test
+      Dependencies.scalaTestFunSuite % Test,
+      Dependencies.mockito
     )
   )
 
 lazy val Core: Project = Project("core", file("core"))
-  .dependsOn(Model)
+  .dependsOn(Model % "compile->compile;test->test")
   .settings(Settings.BaseProject: _*)
   .disablePlugins(sbtassembly.AssemblyPlugin)
   .settings(
     name := "core",
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test
+      Dependencies.scalaTestFunSuite % Test,
+      Dependencies.mockito
     )
   )
 
@@ -41,10 +44,11 @@ lazy val Main: Project = Project("main", file("main"))
     name := "main",
     assemblyJarName in assembly := "league_rank.jar",
     assemblyOutputPath in assembly := file("release/league_rank.jar"),
-    assemblyOption in assembly := (assemblyOption in assembly).value.copy(
-    prependShellScript = Some(defaultShellScript)),
+    assemblyOption in assembly := (assemblyOption in assembly).value
+      .copy(prependShellScript = Some(defaultShellScript)),
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test
+      Dependencies.scalaTestFunSuite % Test,
+      Dependencies.mockito
     )
   )
 

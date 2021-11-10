@@ -4,6 +4,10 @@ import org.scalatest.funsuite.AnyFunSuite
 import com.spandigital.leaguerank.model._
 import com.spandigital.leaguerank.core.League
 import scala.collection.mutable.LinkedHashMap
+import com.spandigital.leaguerank.model.{
+  MatchResultDefaultObject,
+  TeamResultDefaultObject
+}
 
 class LeagueUnitTests extends AnyFunSuite {
 
@@ -15,9 +19,18 @@ class LeagueUnitTests extends AnyFunSuite {
   test("Correctly allocates points to new team") {
     val league = League()
     val rabbits = "Rabbits"
-    league.allocatePoints(rabbits, Points.Draw)
+    val dogs = "dogs"
+    league.allocateRankings(
+      List(
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(rabbits, 1),
+          teamB = TeamResultDefaultObject.copy(dogs, 0)
+        )
+      )
+    )
 
-    val expectedLeagueRankings = Map(rabbits -> Points.Draw)
+    val expectedLeagueRankings =
+      Map(rabbits -> Points.Win, dogs -> Points.Lose)
 
     assert(expectedLeagueRankings === league.retrieveRankings())
   }
@@ -25,50 +38,89 @@ class LeagueUnitTests extends AnyFunSuite {
   test("Correctly allocates points to an existing team") {
     val league = League()
     val rabbits = "Rabbits"
-    league.allocatePoints(rabbits, Points.Draw)
-    league.allocatePoints(rabbits, Points.Win)
-
-    val expectedLeagueRankings = Map(rabbits -> (Points.Draw + Points.Win))
+    val dogs = "dogs"
+    league.allocateRankings(
+      List(
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(rabbits, 1),
+          teamB = TeamResultDefaultObject.copy(dogs, 0)
+        )
+      )
+    )
+    val expectedLeagueRankings =
+      Map(rabbits -> Points.Win, dogs -> Points.Lose)
 
     assert(expectedLeagueRankings === league.retrieveRankings())
+
+    league.allocateRankings(
+      List(
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(rabbits, 0),
+          teamB = TeamResultDefaultObject.copy(dogs, 5)
+        )
+      )
+    )
+
+    val updatedExpectedLeagueRankings =
+      Map(rabbits -> Points.Win, dogs -> Points.Win)
+
+    assert(updatedExpectedLeagueRankings === league.retrieveRankings())
   }
 
-  test("Correctly orders team when there are no point ties") {
+  test("Correctly orders team when there are no ties in points") {
     val league = League()
-
     val rabbits = "Rabbits"
-    league.allocatePoints(rabbits, Points.Lose)
-
     val penguins = "Penguins"
-    league.allocatePoints(penguins, Points.Win)
 
     val expectedLeagueRankings =
       Map(penguins -> Points.Win, rabbits -> (Points.Lose))
 
+    league.allocateRankings(
+      List(
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(rabbits, 0),
+          teamB = TeamResultDefaultObject.copy(penguins, 5)
+        )
+      )
+    )
+
     assert(
-      expectedLeagueRankings.toSeq == league.retrieveRankings().toSeq
+      expectedLeagueRankings == league.retrieveRankings()
     )
   }
 
-  test("Correctly orders team alphabetically when there are points ties") {
+  test("Correctly orders team alphabetically when there are ties in points") {
     val league = League()
     val tarantulas = "Tarantulas"
-    league.allocatePoints(tarantulas, (Points.Win + Points.Win))
-
     val lions = "Lions"
-    league.allocatePoints(
-      lions,
-      (Points.Win + Points.Draw + Points.Draw)
-    )
-
     val snakes = "Snakes"
-    league.allocatePoints(snakes, Points.Draw)
-
     val fcAwesome = "FC Awesome"
-    league.allocatePoints(fcAwesome, Points.Draw)
-
     val grouches = "Grouches"
-    league.allocatePoints(grouches, Points.Lose)
+
+    league.allocateRankings(
+      List(
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(lions, 3),
+          teamB = TeamResultDefaultObject.copy(snakes, 3)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(tarantulas, 1),
+          teamB = TeamResultDefaultObject.copy(fcAwesome, 0)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(lions, 1),
+          teamB = TeamResultDefaultObject.copy(fcAwesome, 1)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(tarantulas, 3),
+          teamB = TeamResultDefaultObject.copy(snakes, 1)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(lions, 4),
+          teamB = TeamResultDefaultObject.copy(grouches, 0)
+        )
+      )
+    )
 
     val expectedLeagueRankings = LinkedHashMap(
       tarantulas -> (Points.Win + Points.Win),
@@ -79,7 +131,7 @@ class LeagueUnitTests extends AnyFunSuite {
     )
 
     assert(
-      expectedLeagueRankings.toSeq === league.retrieveRankings().toSeq
+      expectedLeagueRankings === league.retrieveRankings()
     )
   }
 
@@ -87,22 +139,35 @@ class LeagueUnitTests extends AnyFunSuite {
   test("correctly prints the league table") {
     val league = League()
     val tarantulas = "Tarantulas"
-    league.allocatePoints(tarantulas, (Points.Win + Points.Win))
-
     val lions = "Lions"
-    league.allocatePoints(
-      lions,
-      (Points.Win + Points.Draw + Points.Draw)
-    )
-
     val snakes = "Snakes"
-    league.allocatePoints(snakes, Points.Draw)
-
     val fcAwesome = "FC Awesome"
-    league.allocatePoints(fcAwesome, Points.Draw)
-
     val grouches = "Grouches"
-    league.allocatePoints(grouches, Points.Lose)
+
+    league.allocateRankings(
+      List(
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(lions, 3),
+          teamB = TeamResultDefaultObject.copy(snakes, 3)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(tarantulas, 1),
+          teamB = TeamResultDefaultObject.copy(fcAwesome, 0)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(lions, 1),
+          teamB = TeamResultDefaultObject.copy(fcAwesome, 1)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(tarantulas, 3),
+          teamB = TeamResultDefaultObject.copy(snakes, 1)
+        ),
+        MatchResultDefaultObject.copy(
+          teamA = TeamResultDefaultObject.copy(lions, 4),
+          teamB = TeamResultDefaultObject.copy(grouches, 0)
+        )
+      )
+    )
 
     val expectedLeagueRankings =
       """

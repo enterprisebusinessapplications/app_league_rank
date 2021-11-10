@@ -1,6 +1,6 @@
-1. create CLI application: done rv1
+1. create CLI application: *
 
-2. accept filenames: done rv1
+2. accept filenames: *
    error handling
 
 3. load file *
@@ -11,21 +11,35 @@
    assumption(as prescribed): *
     file input valid, no error handling *
 
-5. implement league ranking calculation
-   LeagueRankingCaculator
-   pure function: no error handling
+5. implement league ranking calculation *
+   LeagueRankingCaculator *
+   pure function: no error handling *
 
 6. implement string representation of calculation *
    pure function: no error handling
 
 7. wire everything up *
-   light manual
+   light manual testing *
+   refactor design for flow during wire up
 
 8. through automated(unit and integration testing)
+   LeagueServiceUnitTests
+   LeagueUnitTests
+   MatchResultsFileReaderIntegrationTests
+   MatchResultsFileReaderUnitTests
+   MainUnitTests
+   TeamResultUnitTests
+
+9. coverage report
 
 9. through manual testing
 
 10. documentation
    installation
    usage
-   
+
+11. final review
+    specification vs implementation
+    
+Key:
+   * first pass done

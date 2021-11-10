@@ -1,11 +1,14 @@
 package com.spandigital.leaguerank.core
 
 import scala.collection.mutable.{Map => MutableMap, LinkedHashMap}
+import com.spandigital.leaguerank.model._
+case class League() {
+  private val pointsTable: MutableMap[String, Int] = MutableMap.empty
 
-case class League(pointsTable: MutableMap[String, Int] = MutableMap.empty) {
-  //private val pointsTable: MutableMap[String, Int] = MutableMap()
-
-  private def sortByPointsThenName(teamA: (String, Int), teamB: (String, Int)) = {
+  private def sortByPointsThenName(
+      teamA: (String, Int),
+      teamB: (String, Int)
+  ) = {
     val (teamAName, teamAPoints) = teamA
     val (teamBName, teamBPoints) = teamB
 
@@ -13,14 +16,33 @@ case class League(pointsTable: MutableMap[String, Int] = MutableMap.empty) {
     else teamAPoints > teamBPoints
   }
 
-  def newLeague(): Unit = pointsTable.clear()
+  private def allocatePoints(teamA: TeamResult, teamB: TeamResult) = {
+    def setPoints(teamName: String, points: Int): Unit =
+      if (pointsTable.contains(teamName))
+        pointsTable(teamName) = pointsTable(teamName) + points
+      else pointsTable(teamName) = points
 
-  def allocatePoints(teamName: String, points: Int): Unit =
-    if (pointsTable.contains(teamName)) pointsTable(teamName) = pointsTable(teamName) + points
-    else pointsTable(teamName) = points
+    if (teamA.score > teamB.score) {
+      setPoints(teamA.name, Points.Win)
+      setPoints(teamB.name, Points.Lose)
+    } else if (teamA.score < teamB.score) {
+      setPoints(teamA.name, Points.Lose)
+      setPoints(teamB.name, Points.Win)
+    } else {
+      setPoints(teamA.name, Points.Draw)
+      setPoints(teamB.name, Points.Draw)
+    }
+  }
 
   def retrieveRankings(): LinkedHashMap[String, Int] =
     LinkedHashMap(pointsTable.toSeq.sortWith(sortByPointsThenName): _*)
+
+  def allocateRankings(
+      matches: List[MatchResult]
+  ): LinkedHashMap[String, Int] = {
+    matches.map(m => allocatePoints(m.teamA, m.teamB))
+    retrieveRankings()
+  }
 
   override def toString(): String = {
     def pointsSuffix(points: Int): String =

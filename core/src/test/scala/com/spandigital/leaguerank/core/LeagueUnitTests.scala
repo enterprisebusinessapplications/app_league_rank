@@ -12,12 +12,12 @@ import com.spandigital.leaguerank.model.{
 class LeagueUnitTests extends AnyFunSuite {
 
   test("Correctly creates new league with no point allocations") {
-    val league = League()
+    val league = new League()
     assert(Map[String, Int]() === league.retrieveRankings())
   }
 
   test("Correctly allocates points to new team") {
-    val league = League()
+    val league = new League()
     val rabbits = "Rabbits"
     val dogs = "dogs"
     league.allocateRankings(
@@ -36,7 +36,7 @@ class LeagueUnitTests extends AnyFunSuite {
   }
 
   test("Correctly allocates points to an existing team") {
-    val league = League()
+    val league = new League()
     val rabbits = "Rabbits"
     val dogs = "dogs"
     league.allocateRankings(
@@ -68,7 +68,7 @@ class LeagueUnitTests extends AnyFunSuite {
   }
 
   test("Correctly orders team when there are no ties in points") {
-    val league = League()
+    val league = new League()
     val rabbits = "Rabbits"
     val penguins = "Penguins"
 
@@ -90,7 +90,7 @@ class LeagueUnitTests extends AnyFunSuite {
   }
 
   test("Correctly orders team alphabetically when there are ties in points") {
-    val league = League()
+    val league = new League()
     val tarantulas = "Tarantulas"
     val lions = "Lions"
     val snakes = "Snakes"
@@ -137,7 +137,7 @@ class LeagueUnitTests extends AnyFunSuite {
 
   //TODO come back, weird asertion error here
   test("correctly prints the league table") {
-    val league = League()
+    val league = new League()
     val tarantulas = "Tarantulas"
     val lions = "Lions"
     val snakes = "Snakes"

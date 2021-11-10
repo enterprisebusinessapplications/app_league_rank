@@ -11,7 +11,7 @@ object Main extends App {
     else {
       val matchResultsFileName = args(0)
       val matches = MatchesFileParser.loadFile(matchResultsFileName)
-      val league = League()
+      val league = new League()
       val rankings = league.allocateRankings(matches)
       println(league)
     }

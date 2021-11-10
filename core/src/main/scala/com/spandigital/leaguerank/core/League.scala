@@ -2,19 +2,8 @@ package com.spandigital.leaguerank.core
 
 import scala.collection.mutable.{Map => MutableMap, LinkedHashMap}
 import com.spandigital.leaguerank.model._
-case class League() {
+class League() {
   private val pointsTable: MutableMap[String, Int] = MutableMap.empty
-
-  private def sortByPointsThenName(
-      teamA: (String, Int),
-      teamB: (String, Int)
-  ) = {
-    val (teamAName, teamAPoints) = teamA
-    val (teamBName, teamBPoints) = teamB
-
-    if (teamAPoints == teamBPoints) teamAName < teamBName
-    else teamAPoints > teamBPoints
-  }
 
   private def allocatePoints(teamA: TeamResult, teamB: TeamResult) = {
     def setPoints(teamName: String, points: Int): Unit =
@@ -34,8 +23,16 @@ case class League() {
     }
   }
 
-  def retrieveRankings(): LinkedHashMap[String, Int] =
+  def retrieveRankings(): LinkedHashMap[String, Int] = {
+    def sortByPointsThenName(teamA: (String, Int), teamB: (String, Int)) = {
+      val (teamAName, teamAPoints) = teamA
+      val (teamBName, teamBPoints) = teamB
+
+      if (teamAPoints == teamBPoints) teamAName < teamBName
+      else teamAPoints > teamBPoints
+    }
     LinkedHashMap(pointsTable.toSeq.sortWith(sortByPointsThenName): _*)
+  }
 
   def allocateRankings(
       matches: List[MatchResult]

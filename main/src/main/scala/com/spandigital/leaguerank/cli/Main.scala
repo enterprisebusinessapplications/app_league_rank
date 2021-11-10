@@ -2,6 +2,7 @@ package com.spandigital.leaguerank.cli
 
 import com.spandigital.leaguerank.gateway._
 import com.spandigital.leaguerank.core._
+import java.io.FileNotFoundException
 object Main extends App {
   try {
     if (args.length == 0)
@@ -17,6 +18,10 @@ object Main extends App {
       println(league)
     }
   } catch {
+    case e: FileNotFoundException =>
+      println(
+        s"File not found, please ensure the file is in the same directory as the program. Provided filename was: ${args(0)}."
+      )
     case e: Exception =>
       println(
         "Failed to generate the League rankings. Please refer to stack trace below for reason:"

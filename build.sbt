@@ -12,7 +12,7 @@ lazy val Model: Project = Project("model", file("model"))
   )
 
 lazy val Gateway: Project = Project("gateway", file("gateway"))
-  .dependsOn(Model)
+  .dependsOn(Model % "compile->compile;test->test")
   .settings(Settings.BaseProject: _*)
   .disablePlugins(sbtassembly.AssemblyPlugin)
   .settings(

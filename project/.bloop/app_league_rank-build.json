@@ -224,7 +224,7 @@
         "platform": {
             "name": "jvm",
             "config": {
-                "home": "/usr/local/Cellar/openjdk@11/11.0.12/libexec/openjdk.jdk/Contents/Home",
+                "home": "/Users/praisetompane/.jabba/jdk/adopt@1.11.0-11/Contents/Home",
                 "options": [
                     "-Duser.dir=/Users/praisetompane/My Drive/1_I_am_a_billionaire(USD)/SPAN_digital/app_league_rank/project"
                 ]

@@ -20,13 +20,12 @@
 
 7. wire everything up *
    light manual testing *
-   refactor design for flow during wire up
+   refactor design for flow during wire up *
 
 8. through automated(unit and integration testing)
-   LeagueServiceUnitTests
-   LeagueUnitTests
-   MatchResultsFileReaderIntegrationTests
-   MatchResultsFileReaderUnitTests
+   LeagueUnitTests *
+   MatchResultsParserUnitTests *
+   FileLoaderUnitTests
    MainUnitTests
    TeamResultUnitTests
 

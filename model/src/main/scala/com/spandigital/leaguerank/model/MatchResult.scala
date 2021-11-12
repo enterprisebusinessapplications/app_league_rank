@@ -1,3 +1,3 @@
-package com.spandigital.leaguerank.model
+package com.leaguerank.model
 
 case class MatchResult(teamA: TeamScore, teamB: TeamScore)

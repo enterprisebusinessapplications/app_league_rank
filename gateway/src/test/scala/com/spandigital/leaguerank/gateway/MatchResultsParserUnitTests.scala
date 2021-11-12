@@ -1,10 +1,7 @@
-package com.spandigital.leaguerank.gateway
+package com.leaguerank.gateway
 
 import org.scalatest.funsuite.AnyFunSuite
-import com.spandigital.leaguerank.model.{
-  MatchResultDefaultObject,
-  TeamScoreDefaultObject
-}
+import com.leaguerank.model.{MatchResultDefaultObject, TeamScoreDefaultObject}
 
 class MatchResultsParserUnitTests extends AnyFunSuite {
 

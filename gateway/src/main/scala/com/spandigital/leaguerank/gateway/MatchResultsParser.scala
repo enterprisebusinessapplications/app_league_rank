@@ -1,5 +1,5 @@
-package com.spandigital.leaguerank.gateway
-import com.spandigital.leaguerank.model.{MatchResult, TeamScore}
+package com.leaguerank.gateway
+import com.leaguerank.model.{MatchResult, TeamScore}
 
 object MatchResultsParser {
   def parse(matchResults: List[String]): List[MatchResult] =

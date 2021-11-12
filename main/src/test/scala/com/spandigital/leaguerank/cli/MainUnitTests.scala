@@ -1,7 +1,7 @@
-package com.spandigital.leaguerank.cli
+package com.leaguerank.cli
 
 import org.scalatest.funsuite.AnyFunSuite
-import com.spandigital.leaguerank.cli.Main
+import com.leaguerank.cli.Main
 
 class MainUnitTests extends AnyFunSuite {
   test("prints correct message when no filename parameter supplied.") {

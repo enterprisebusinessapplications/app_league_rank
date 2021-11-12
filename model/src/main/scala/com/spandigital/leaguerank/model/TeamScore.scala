@@ -1,4 +1,4 @@
-package com.spandigital.leaguerank.model
+package com.leaguerank.model
 
 case class TeamScore(name: String, score: Int)
 

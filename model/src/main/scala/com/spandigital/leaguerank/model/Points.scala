@@ -1,4 +1,4 @@
-package com.spandigital.leaguerank.model
+package com.leaguerank.model
 
 object Points {
   val Win = 3

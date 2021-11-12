@@ -1,5 +1,5 @@
-Lions 3, Snakes 3
-Tarantulas 1, FC Awesome 0
-Lions 1, FC Awesome 1
-Tarantulas 3, Snakes 1
-Lions 4, Grouches 0
+Mighty Ducks 3, Sabres 3
+New York Rangers 1, Philadelphia Flyers 0
+Mighty Ducks 1, Philadelphia Flyers 1
+New York Rangers 3, Sabres 1
+Mighty Ducks 4, Boston Bruins 0

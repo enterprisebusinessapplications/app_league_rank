@@ -1,4 +1,4 @@
-# Structure
+# Project layout
 * core
     * The business logic of the application lives in this module.
 * model
@@ -10,7 +10,7 @@
         * the command line interface into the application lives in this module
     * if one were to need to expose this service over REST, gRPC, as library etc, they simply add a module here that provides the interface they want expose.
 
-# file interface
+# file interface(data format)
 * definitions:
     * TeamResult = AlphabetName Score
         * AlphabetName can incldue spaces
@@ -27,7 +27,7 @@
 
 # usage
 ```bash
-   #from root directory
+   # from root directory
    $ cd ./release
-   $ ./league_rank.jar leagueresults.txt
+   $ ./league_rank.jar sample_match_results.txt
 ```

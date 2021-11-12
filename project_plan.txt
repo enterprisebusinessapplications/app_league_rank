@@ -27,7 +27,7 @@
    MatchResultsParserUnitTests *
    FileLoaderUnitTests *(not needed)
    TeamResultUnitTests *
-   MainUnitTests
+   MainUnitTests *
 
 9. coverage report
 

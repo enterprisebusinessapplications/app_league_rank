@@ -6,14 +6,15 @@ import com.spandigital.leaguerank.core.League
 import scala.collection.mutable.LinkedHashMap
 import com.spandigital.leaguerank.model.{
   MatchResultDefaultObject,
-  TeamScoreDefaultObject
+  TeamScoreDefaultObject,
+  LeagueRankDefaultObject
 }
 
 class LeagueUnitTests extends AnyFunSuite {
 
   test("Correctly creates new league with no point allocations") {
     val league = new League()
-    assert(Map[String, Int]() === league.retrieveRankings())
+    assert(Seq() === league.retrieveRankings())
   }
 
   test("Correctly allocates points to new team") {
@@ -29,8 +30,10 @@ class LeagueUnitTests extends AnyFunSuite {
       )
     )
 
-    val expectedLeagueRankings =
-      Map(rabbits -> Points.Win, dogs -> Points.Lose)
+    val expectedLeagueRankings = Seq(
+      LeagueRankDefaultObject.copy(1, rabbits, Points.Win),
+      LeagueRankDefaultObject.copy(2, dogs, Points.Lose)
+    )
 
     assert(expectedLeagueRankings === league.retrieveRankings())
   }
@@ -38,7 +41,7 @@ class LeagueUnitTests extends AnyFunSuite {
   test("Correctly allocates points to an existing team") {
     val league = new League()
     val rabbits = "Rabbits"
-    val dogs = "dogs"
+    val dogs = "Dogs"
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
@@ -47,11 +50,12 @@ class LeagueUnitTests extends AnyFunSuite {
         )
       )
     )
-    val expectedLeagueRankings =
-      Map(rabbits -> Points.Win, dogs -> Points.Lose)
 
+    val expectedLeagueRankings = Seq(
+      LeagueRankDefaultObject.copy(1, rabbits, Points.Win),
+      LeagueRankDefaultObject.copy(2, dogs, Points.Lose)
+    )
     assert(expectedLeagueRankings === league.retrieveRankings())
-
     league.allocateRankings(
       List(
         MatchResultDefaultObject.copy(
@@ -61,8 +65,10 @@ class LeagueUnitTests extends AnyFunSuite {
       )
     )
 
-    val updatedExpectedLeagueRankings =
-      Map(rabbits -> Points.Win, dogs -> Points.Win)
+    val updatedExpectedLeagueRankings = Seq(
+      LeagueRankDefaultObject.copy(1, dogs, Points.Win),
+      LeagueRankDefaultObject.copy(1, rabbits, Points.Win)
+    )
 
     assert(updatedExpectedLeagueRankings === league.retrieveRankings())
   }
@@ -72,8 +78,10 @@ class LeagueUnitTests extends AnyFunSuite {
     val rabbits = "Rabbits"
     val penguins = "Penguins"
 
-    val expectedLeagueRankings =
-      Map(penguins -> Points.Win, rabbits -> (Points.Lose))
+    val expectedLeagueRankings = Seq(
+      LeagueRankDefaultObject.copy(1, penguins, Points.Win),
+      LeagueRankDefaultObject.copy(2, rabbits, Points.Lose)
+    )
 
     league.allocateRankings(
       List(
@@ -122,12 +130,13 @@ class LeagueUnitTests extends AnyFunSuite {
       )
     )
 
-    val expectedLeagueRankings = LinkedHashMap(
-      tarantulas -> (Points.Win + Points.Win),
-      lions -> (Points.Win + Points.Draw + Points.Draw),
-      fcAwesome -> Points.Draw,
-      snakes -> Points.Draw,
-      grouches -> Points.Lose
+    val expectedLeagueRankings = Seq(
+      LeagueRankDefaultObject.copy(1, tarantulas, Points.Win + Points.Win),
+      LeagueRankDefaultObject
+        .copy(2, lions, Points.Win + Points.Draw + Points.Draw),
+      LeagueRankDefaultObject.copy(3, fcAwesome, Points.Draw),
+      LeagueRankDefaultObject.copy(3, snakes, Points.Draw),
+      LeagueRankDefaultObject.copy(5, grouches, Points.Lose)
     )
 
     assert(
@@ -135,7 +144,6 @@ class LeagueUnitTests extends AnyFunSuite {
     )
   }
 
-  //TODO come back, weird asertion error here
   test("correctly prints the league table") {
     val league = new League()
     val tarantulas = "Tarantulas"

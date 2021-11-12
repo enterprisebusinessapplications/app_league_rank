@@ -6,8 +6,7 @@ lazy val Model: Project = Project("model", file("model"))
   .settings(
     name := "model",
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test,
-      Dependencies.mockito
+      Dependencies.scalaTestFunSuite % Test
     )
   )
 
@@ -18,8 +17,7 @@ lazy val Gateway: Project = Project("gateway", file("gateway"))
   .settings(
     name := "gateway",
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test,
-      Dependencies.mockito
+      Dependencies.scalaTestFunSuite % Test
     )
   )
 
@@ -30,25 +28,23 @@ lazy val Core: Project = Project("core", file("core"))
   .settings(
     name := "core",
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test,
-      Dependencies.mockito
+      Dependencies.scalaTestFunSuite % Test
     )
   )
 
 lazy val Main: Project = Project("main", file("main"))
-  .dependsOn(Model, Gateway, Core)
+  .dependsOn(Model, Gateway, Core) 
   .settings(Settings.BaseProject: _*)
   .settings(Settings.Assembly: _*)
   .enablePlugins(sbtassembly.AssemblyPlugin)
   .settings(
     name := "main",
-    assemblyJarName in assembly := "league_rank.jar",
-    assemblyOutputPath in assembly := file("release/league_rank.jar"),
-    assemblyOption in assembly := (assemblyOption in assembly).value
+    assembly / assemblyJarName := "league_rank.jar",
+    assembly / assemblyOutputPath := file("release/league_rank.jar"),
+    assembly / assemblyOption := (assemblyOption in assembly).value
       .copy(prependShellScript = Some(defaultShellScript)),
     libraryDependencies ++= Seq(
-      Dependencies.scalaTestFunSuite % Test,
-      Dependencies.mockito
+      Dependencies.scalaTestFunSuite % Test
     )
   )
 
@@ -57,6 +53,5 @@ lazy val leaguerank: Project = project
   .aggregate(Model, Gateway, Core, Main)
   .disablePlugins(sbtassembly.AssemblyPlugin)
   .settings(
-    scalaVersion := Dependencies.scalaVersion,
-    aggregate in update := false
+    scalaVersion := Dependencies.scalaVersion
   )

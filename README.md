@@ -1,4 +1,6 @@
-# Project layout
+# app_league_rank
+
+# project layout
 * core
     * The business logic of the application lives in this module.
 * model
@@ -23,11 +25,18 @@
             * Delimeter = ", "
             * TeamResult_B = FC Awesome 0
 
-
+# dependencies
+* java 11
 
 # usage
+* clone repository to machine
+* run commands below to see output with sample file
 ```bash
    # from root directory
    $ cd ./release
    $ ./league_rank.jar sample_match_results.txt
+```
+* for your own file, run from the release folder with command format below
+```
+    $ ./league_rank.jar <your_file_name>
 ```

@@ -1,10 +1,10 @@
-package com.spandigital.leaguerank.core
+package com.leaguerank.core
 
 import org.scalatest.funsuite.AnyFunSuite
-import com.spandigital.leaguerank.model._
-import com.spandigital.leaguerank.core.League
+import com.leaguerank.model._
+import com.leaguerank.core.League
 import scala.collection.mutable.LinkedHashMap
-import com.spandigital.leaguerank.model.{
+import com.leaguerank.model.{
   MatchResultDefaultObject,
   TeamScoreDefaultObject,
   LeagueRankDefaultObject

@@ -1,7 +1,8 @@
-package com.spandigital.leaguerank.core
+package com.leaguerank.core
 
 import scala.collection.mutable.LinkedHashMap
-import com.spandigital.leaguerank.model._
+import com.leaguerank.model._
+
 class League() {
   private val pointsTable: LinkedHashMap[String, Int] = LinkedHashMap.empty
 
@@ -24,38 +25,22 @@ class League() {
   }
 
   def retrieveRankings(): Seq[LeagueRank] = {
-    def sortByNameAlphabetically(teamA: (String, Int), teamB: (String, Int)) = {
-      val (teamAName, _) = teamA
-      val (teamBName, _) = teamB
-      teamAName < teamBName
-    }
-
-    def sortByPointsDescendingOrder(
-        pointsGroup_1: (Int, LinkedHashMap[String, Int]),
-        pointsGroup_2: (Int, LinkedHashMap[String, Int])
-    ) = {
-      val (groupApoints, groupAteams) = pointsGroup_1
-      val (groupBpoints, groupBteams) = pointsGroup_2
-      groupApoints > groupBpoints
-    }
-
     val pointsGroupsDescendingOrderByPoints = pointsTable
       .groupBy { case (_, points) => points }
       .toSeq
-      .sortWith(sortByPointsDescendingOrder)
+      .sortWith(SortByPointsDescendingOrder.apply)
 
     val pointsSubGroupsAlphabeticalOrder =
       pointsGroupsDescendingOrderByPoints.map { case (points, pointsGroups) =>
         val p = pointsGroups
-        p.toSeq.sortWith(sortByNameAlphabetically)
+        p.toSeq.sortWith(SortByNameAlphabetically.apply)
       }
 
     val indexZipped = pointsSubGroupsAlphabeticalOrder.zipWithIndex
-    def previousPointsGroupActualLeagueRanksIncrease(
-        currentPointsGroupIndex: Int
-    ) =
-      if (currentPointsGroupIndex != 0) {
-        indexZipped(currentPointsGroupIndex - 1) match {
+
+    def calculateRank(zipIndex: Int) =
+      if (zipIndex != 0) {
+        indexZipped(zipIndex - 1) match {
           case (pointsGroupTeamList, _) => pointsGroupTeamList.length
         }
       } else 1
@@ -63,7 +48,7 @@ class League() {
     indexZipped.map { case (pointsGroups, index) =>
       pointsGroups.map { case (teamName, points) =>
         LeagueRank(
-          index + previousPointsGroupActualLeagueRanksIncrease(index),
+          index + calculateRank(index),
           teamName,
           points
         )
@@ -87,5 +72,24 @@ class League() {
     retrieveRankings()
       .map(lr => convert(lr.rank, lr.teamName, lr.points))
       .mkString(System.lineSeparator())
+  }
+}
+
+private object SortByPointsDescendingOrder {
+  def apply(
+      pointsGroupA: (Int, LinkedHashMap[String, Int]),
+      pointsGroupB: (Int, LinkedHashMap[String, Int])
+  ) = {
+    val (groupApoints, groupAteams) = pointsGroupA
+    val (groupBpoints, groupBteams) = pointsGroupB
+    groupApoints > groupBpoints
+  }
+}
+
+private object SortByNameAlphabetically {
+  def apply(teamA: (String, Int), teamB: (String, Int)) = {
+    val (teamAName, _) = teamA
+    val (teamBName, _) = teamB
+    teamAName < teamBName
   }
 }

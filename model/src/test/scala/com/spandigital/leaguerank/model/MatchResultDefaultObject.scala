@@ -1,6 +1,6 @@
-package com.spandigital.leaguerank.model
+package com.leaguerank.model
 
-import com.spandigital.leaguerank.model.MatchResult
+import com.leaguerank.model.MatchResult
 
 object MatchResultDefaultObject
     extends MatchResult(TeamScoreDefaultObject, TeamScoreDefaultObject)

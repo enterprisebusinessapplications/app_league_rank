@@ -1,6 +1,6 @@
-package com.spandigital.leaguerank.gateway
+package com.leaguerank.gateway
 
-import com.spandigital.leaguerank.model.{MatchResult, TeamScore}
+import com.leaguerank.model.{MatchResult, TeamScore}
 import scala.util.{Try, Success, Failure}
 import scala.io.Source
 import scala.util.Using

@@ -4,7 +4,7 @@ import sbt._
 import scoverage.ScoverageKeys._
 
 object Settings {
-  val DefaultOrganization = "com.spandigital"
+  val DefaultOrganization = "com"
 
   lazy val BaseProject = Seq(
     organization := DefaultOrganization,

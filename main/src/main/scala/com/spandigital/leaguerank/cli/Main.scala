@@ -1,7 +1,7 @@
-package com.spandigital.leaguerank.cli
+package com.leaguerank.cli
 
-import com.spandigital.leaguerank.gateway._
-import com.spandigital.leaguerank.core._
+import com.leaguerank.gateway._
+import com.leaguerank.core._
 import java.io.FileNotFoundException
 object Main extends App {
   try {

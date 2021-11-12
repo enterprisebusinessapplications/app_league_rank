@@ -1,8 +1,8 @@
-package com.spandigital.leaguerank.model
+package com.leaguerank.model
 
 import org.scalatest.funsuite.AnyFunSuite
-import com.spandigital.leaguerank.model.TeamScore
-import com.spandigital.leaguerank.model.TeamScoreDefaultObject
+import com.leaguerank.model.TeamScore
+import com.leaguerank.model.TeamScoreDefaultObject
 
 class TeamScoreUnitTests extends AnyFunSuite {
 

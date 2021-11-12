@@ -86,6 +86,6 @@ class League() {
 
     retrieveRankings()
       .map(lr => convert(lr.rank, lr.teamName, lr.points))
-      .mkString("\n")
+      .mkString(System.lineSeparator())
   }
 }

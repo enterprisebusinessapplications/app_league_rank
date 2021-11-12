@@ -50,11 +50,24 @@ class League() {
         p.toSeq.sortWith(sortByNameAlphabetically)
       }
 
-    pointsSubGroupsAlphabeticalOrder.zipWithIndex.map {
-      case (pointsGroups, index) =>
-        pointsGroups.map { case (teamName, points) =>
-          LeagueRank(index + 1, teamName, points)
+    val indexZipped = pointsSubGroupsAlphabeticalOrder.zipWithIndex
+    def previousPointsGroupActualLeagueRanksIncrease(
+        currentPointsGroupIndex: Int
+    ) =
+      if (currentPointsGroupIndex != 0) {
+        indexZipped(currentPointsGroupIndex - 1) match {
+          case (pointsGroupTeamList, _) => pointsGroupTeamList.length
         }
+      } else 1
+
+    indexZipped.map { case (pointsGroups, index) =>
+      pointsGroups.map { case (teamName, points) =>
+        LeagueRank(
+          index + previousPointsGroupActualLeagueRanksIncrease(index),
+          teamName,
+          points
+        )
+      }
     }.flatten
   }
 

@@ -31,14 +31,16 @@
 
 9. coverage report
 
-9. through manual testing
+9. through manual testing *
 
-10. documentation
-   installation
-   usage
+10. documentation *
+   installation *
+   usage *
 
 11. final review
     specification vs implementation
+
+12. dockerize
     
 Key:
    * first pass done

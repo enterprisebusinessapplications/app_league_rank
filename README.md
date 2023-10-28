@@ -1,5 +1,6 @@
 # app_league_rank
 ![build status](https://github.com/praisetompane/app_league_rank/actions/workflows/app_league_rank.yaml/badge.svg) <br>
+
 command-line application to calculate league rank table for a one-on-one/team-vs-team sport.
 # league rank rules
 * a draw (tie) is worth 1 point and a win is worth 3 points. 

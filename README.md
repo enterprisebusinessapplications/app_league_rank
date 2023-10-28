@@ -1,8 +1,9 @@
 # app_league_rank
-![build status](https://github.com/praisetompane/app_poker/actions/workflows/app_league_rank.yaml/badge.svg)
+![build status](https://github.com/enterprisebusinessapplications/app_league_rank/actions/workflows/app_league_rank.yaml/badge.svg) <br>
+
 command-line application to calculate league rank table for a one-on-one/team-vs-team sport.
 # league rank rules
-* a draw (tie) is worth 1 point and a win is worth 3 points. 
+* a draw (tie) is worth 1 point and a win is worth 3 points.
 * a loss is worth 0 points.
 * if two or more teams have the same number of points:
     * they are ranked the same.
@@ -12,10 +13,10 @@ command-line application to calculate league rank table for a one-on-one/team-vs
 * core
     * The business logic of the application lives in this module.
 * model
-    * The models to represent the domain live in this module. 
+    * The models to represent the domain live in this module.
 * gateway
     * all external interaction objects(e.g. files, external APIs etc) live in this module
-* main 
+* main
     * cli
         * the command line interface into the application lives in this module
     * if one were to need to expose this service over REST, gRPC, as library etc, they simply add a module here that provides the interface they want expose.
